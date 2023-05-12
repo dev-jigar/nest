@@ -3,3 +3,8 @@ export type CreateUserParams = {
   username: string;
   password: string;
 };
+export type UpdateUserBody = {
+  name: string;
+  username: string;
+  password: string;
+};
