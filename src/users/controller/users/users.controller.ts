@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateUserDto } from 'src/users/dtos/createUser.dto';
 import { UsersService } from 'src/users/services/users/users.service';
 
@@ -6,8 +6,14 @@ import { UsersService } from 'src/users/services/users/users.service';
 export class UsersController {
   constructor(private userService: UsersService) {}
 
-  @Get('')
-  getUsers() {}
+  @Get('/allUsers')
+  async getUsers() {
+    return this.userService.listUsers();
+  }
+  @Get('/profile/:id')
+  async getProfile(@Param('id') params: number) {
+    return await this.userService.getUserProfileData(params);
+  }
 
   @Post('/login')
   async createUser(@Body() createUserDetails: CreateUserDto) {

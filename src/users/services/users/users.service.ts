@@ -10,7 +10,23 @@ export class UsersService {
   constructor(
     @InjectRepository(user) private usersRepository: Repository<user>,
   ) {}
-  listUsers() {}
+  listUsers() {
+    return this.usersRepository.find();
+  }
+  getUserProfileData(number) {
+    try {
+      return this.usersRepository.find({
+        where: {
+          id: number,
+        },
+      });
+    } catch (error) {
+      console.log(
+        '🚀 ~ file: users.service.ts:20 ~ UsersService ~ getUserProfileData ~ error:',
+        error,
+      );
+    }
+  }
 
   createUser(userDetails: CreateUserParams) {
     try {

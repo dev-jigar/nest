@@ -3,3 +3,6 @@ export class CreateUserDto {
   username: string;
   password: string;
 }
+export class findUserProfileParams {
+  id: number;
+}
