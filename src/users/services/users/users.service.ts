@@ -13,11 +13,18 @@ export class UsersService {
   listUsers() {}
 
   createUser(userDetails: CreateUserParams) {
-    const newUser = this.usersRepository.create({
-      ...userDetails,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-    return this.usersRepository.save(newUser);
+    try {
+      const newUser = this.usersRepository.create({
+        ...userDetails,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+      return this.usersRepository.save(newUser);
+    } catch (error) {
+      console.log(
+        '🚀 ~ file: users.service.ts:24 ~ UsersService ~ createUser ~ error:',
+        error,
+      );
+    }
   }
 }
